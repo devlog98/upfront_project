@@ -648,6 +648,11 @@ PrefabInstance:
       propertyPath: raycastDistance
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1228735387703746701, guid: 14f2f1993e8e3e14ea6c4f72de619ce1,
+        type: 3}
+      propertyPath: canJump
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4266040561865350386, guid: 14f2f1993e8e3e14ea6c4f72de619ce1,
         type: 3}
       propertyPath: m_LocalPosition.x
