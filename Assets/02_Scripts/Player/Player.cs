@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /*
  * Player controller
@@ -9,13 +7,16 @@ using UnityEngine;
 namespace devlog98.Player {
     public class Player : MonoBehaviour {
         [SerializeField] private PlayerMovement playerMovement; // movement logic
+        [SerializeField] private PlayerJump playerJump; // jump logic
 
         private void Update() {
             playerMovement.ExecuteUpdate();
+            playerJump.ExecuteUpdate();
         }
 
         private void FixedUpdate() {
             playerMovement.ExecuteFixedUpdate();
+            playerJump.ExecuteFixedUpdate();
         }
     }
 }

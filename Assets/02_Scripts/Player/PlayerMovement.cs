@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /*
  * Responsible for Player horizontal movement
  */
 
 namespace devlog98.Player {
-    [Serializable]
     public class PlayerMovement : MonoBehaviour {
         [SerializeField] private Rigidbody2D rb;
         [SerializeField] private float moveSpeed;
