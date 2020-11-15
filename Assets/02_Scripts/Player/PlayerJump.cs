@@ -10,6 +10,7 @@ namespace devlog98.Player {
         [SerializeField] private Rigidbody2D rb;
         [SerializeField] private float jumpForce;
         [SerializeField] private float gravityForce;
+        [SerializeField] private float shortJumpForce;
         private float verticalVelocity;
         public bool canJump;
 
@@ -39,7 +40,12 @@ namespace devlog98.Player {
             else {
                 // fall
                 canJump = false;
-                verticalVelocity -= gravityForce * Time.deltaTime;
+                if (Input.GetButton("Jump")) {
+                    verticalVelocity -= gravityForce * Time.deltaTime;
+                }
+                else {
+                    verticalVelocity -= shortJumpForce * Time.deltaTime;
+                }
             }
 
             // jump
