@@ -7,6 +7,8 @@ using UnityEngine;
  
 namespace devlog98.Ammunition {
     public class Bullet : MonoBehaviour {
+        public static string Tag = "PlayerBullet"; // default bullet tag
+
         [Header("Movement")]
         [SerializeField] protected Rigidbody2D rb;
         [SerializeField] protected float moveSpeed; // bullet speed
@@ -34,7 +36,6 @@ namespace devlog98.Ammunition {
                 return;
             }
 
-            other.SendMessage("Damage", damage);
             Disable();
         }
 
