@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Responsible for controlling Player health and damage feedback
+ */
+
 namespace devlog98.Player {
     public class PlayerHealth : MonoBehaviour {
         [Header("Health")]

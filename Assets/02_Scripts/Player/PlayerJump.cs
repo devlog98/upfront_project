@@ -19,7 +19,9 @@ namespace devlog98.Player {
         [Header("Ground Detection")]
         [SerializeField] private Collider2D collider;
         [SerializeField] private LayerMask groundLayer;
+
         private bool isGrounded;
+        public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
         private float raycastHorizontalOffset;
         private float raycastVerticalOffset;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * Responsible for controlling enemy health and damage feedback
+ * Responsible for controlling Enemy health and damage feedback
  */
 
 namespace devlog98.Enemy {
