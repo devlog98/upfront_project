@@ -12,8 +12,11 @@ namespace devlog98.Player {
 
         private void Update() {
             playerMovement.ExecuteUpdate();
+            // only shoot when jumping
+            if (playerJump.VerticalVelocity == 0) {
+                playerShoot.ExecuteUpdate();
+            }
             playerJump.ExecuteUpdate();
-            playerShoot.ExecuteUpdate();
         }
 
         private void FixedUpdate() {

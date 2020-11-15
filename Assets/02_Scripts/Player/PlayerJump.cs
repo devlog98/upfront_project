@@ -8,11 +8,13 @@ namespace devlog98.Player {
     public class PlayerJump : MonoBehaviour {
         [Header("Jump")]
         [SerializeField] private Rigidbody2D rb;
-        [SerializeField] private float jumpForce;
-        [SerializeField] private float gravityForce;
-        [SerializeField] private float shortJumpForce;
+        [SerializeField] private float jumpForce; // force applied on Player jump
+        [SerializeField] private float gravityForce; // default force applied down
+        [SerializeField] private float shortJumpForce; // bigger force applied down to ease jump height control
+
         private float verticalVelocity;
-        public bool canJump;
+        public float VerticalVelocity { get => verticalVelocity; }
+        private bool canJump; // if Player can jump currently
 
         [Header("Ground Detection")]
         [SerializeField] private Collider2D collider;
