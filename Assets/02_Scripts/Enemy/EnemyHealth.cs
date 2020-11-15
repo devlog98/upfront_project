@@ -19,7 +19,7 @@ namespace devlog98.Enemy {
         private const float flashValue = 0.07f; // duration of each single flash
 
         // makes enemy lose health
-        public void TakeDamage(int damage) {
+        public void TakeDamage(int damage, bool dropBlock) {
             // damage
             health -= damage;
 
@@ -29,7 +29,7 @@ namespace devlog98.Enemy {
 
             // kill enemy if health reaches 0
             if (health <= 0) {
-                Die();
+                Die(dropBlock);
             }
         }
 
@@ -49,10 +49,12 @@ namespace devlog98.Enemy {
         }
 
         // kills enemy
-        private void Die() {
+        private void Die(bool dropBlock) {
             // drop block
-            enemyBlock.SetActive(true);
-            enemyBlock.transform.parent = null;
+            if (dropBlock) {
+                enemyBlock.SetActive(true);
+                enemyBlock.transform.parent = null;
+            }
 
             Destroy(this.gameObject);
         }
