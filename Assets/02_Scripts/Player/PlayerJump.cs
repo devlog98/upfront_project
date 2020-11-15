@@ -65,7 +65,7 @@ namespace devlog98.Player {
         private bool GroundCheck() {
             for (int i = -1; i <= 1; i++) {
                 Vector3 rayOrigin = new Vector2(transform.position.x + (raycastHorizontalOffset * i), transform.position.y);
-                Debug.DrawLine(rayOrigin, new Vector3(rayOrigin.x + (raycastHorizontalOffset * i), rayOrigin.y, rayOrigin.z) + Vector3.down * raycastVerticalOffset, Color.green);
+                Debug.DrawLine(rayOrigin, new Vector3(rayOrigin.x, rayOrigin.y - raycastVerticalOffset), Color.green);
                 if (Physics2D.Raycast(rayOrigin, Vector3.down, raycastVerticalOffset, groundLayer)) {
                     return true;
                 }
