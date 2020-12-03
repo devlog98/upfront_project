@@ -10,7 +10,7 @@ namespace devlog98.Enemy {
     public class EnemyHealth : MonoBehaviour {
         [Header("Health")]
         [SerializeField] private int health; // health pool
-        [SerializeField] private GameObject enemyBlock; // block that will be dropped after enemy death
+        [SerializeField] private GameObject blockPrefab; // block that will be dropped after enemy death
 
         [Header("Damage Flash")]
         [SerializeField] private List<SpriteRenderer> spriteRenderers; // all sprites that must flash when damage is received
@@ -52,11 +52,10 @@ namespace devlog98.Enemy {
         private void Die(bool dropBlock) {
             // drop block
             if (dropBlock) {
-                enemyBlock.SetActive(true);
-                enemyBlock.transform.parent = null;
+                Instantiate(blockPrefab, transform.position, transform.rotation, null);
             }
 
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 }
