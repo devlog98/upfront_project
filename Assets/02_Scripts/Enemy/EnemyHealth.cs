@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * Responsible for controlling enemy health and damage feedback
+ * Responsible for controlling Enemy health and damage feedback
  */
 
 namespace devlog98.Enemy {
     public class EnemyHealth : MonoBehaviour {
         [Header("Health")]
         [SerializeField] private int health; // health pool
-        [SerializeField] private GameObject enemyBlock; // block that will be dropped after enemy death
+        [SerializeField] private GameObject blockPrefab; // block that will be dropped after enemy death
 
         [Header("Damage Flash")]
         [SerializeField] private List<SpriteRenderer> spriteRenderers; // all sprites that must flash when damage is received
@@ -19,7 +19,7 @@ namespace devlog98.Enemy {
         private const float flashValue = 0.07f; // duration of each single flash
 
         // makes enemy lose health
-        public void TakeDamage(int damage) {
+        public void TakeDamage(int damage, bool dropBlock) {
             // damage
             health -= damage;
 
@@ -29,7 +29,7 @@ namespace devlog98.Enemy {
 
             // kill enemy if health reaches 0
             if (health <= 0) {
-                Die();
+                Die(dropBlock);
             }
         }
 
@@ -49,12 +49,13 @@ namespace devlog98.Enemy {
         }
 
         // kills enemy
-        private void Die() {
+        private void Die(bool dropBlock) {
             // drop block
-            enemyBlock.SetActive(true);
-            enemyBlock.transform.parent = null;
+            if (dropBlock) {
+                Instantiate(blockPrefab, transform.position, transform.rotation, null);
+            }
 
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 }
