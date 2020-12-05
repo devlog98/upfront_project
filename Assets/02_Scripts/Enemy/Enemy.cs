@@ -20,6 +20,9 @@ namespace devlog98.Enemy {
             if (collision.CompareTag(Bullet.Tag)) {
                 enemyHealth.TakeDamage(1);
             }
+            else if (collision.tag.Contains(Tag)) {
+                enemyHealth.TakeDamage(1, false);
+            }
         }
     }
 }
