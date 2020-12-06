@@ -23,13 +23,14 @@ namespace devlog98.Enemy {
             // damage
             health -= damage;
 
-            // damage flash
-            StopCoroutine("DamageFlash");
-            StartCoroutine("DamageFlash");
-
             // kill enemy if health reaches 0
             if (health <= 0) {
                 Die(dropBlock);
+            }
+            else {
+                // damage flash
+                StopCoroutine("DamageFlash");
+                StartCoroutine("DamageFlash");
             }
         }
 
