@@ -127,7 +127,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.28, y: 1.28}
+  m_Size: {x: 1.1, y: 1.1}
   m_EdgeRadius: 0
 --- !u!114 &1310820014224484008
 MonoBehaviour:
@@ -156,7 +156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  enemyBlock: {fileID: 4835701173316515388}
+  blockPrefab: {fileID: 1131766429120294734, guid: 12cc9d9f7c256d44baca8940225d3a6a,
+    type: 3}
   spriteRenderers:
   - {fileID: 5120671997536744754}
   defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
@@ -316,12 +317,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12cc9d9f7c256d44baca8940225d3a6a, type: 3}
---- !u!1 &4835701173316515388 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1131766429120294734, guid: 12cc9d9f7c256d44baca8940225d3a6a,
-    type: 3}
-  m_PrefabInstance: {fileID: 5525647407986317682}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4835701173316515328 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1131766429120294770, guid: 12cc9d9f7c256d44baca8940225d3a6a,
