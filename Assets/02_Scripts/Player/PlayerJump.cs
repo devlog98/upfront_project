@@ -8,15 +8,20 @@ namespace devlog98.Player {
     public class PlayerJump : MonoBehaviour {
         [Header("Jump")]
         [SerializeField] private Rigidbody2D rb;
-        [SerializeField] private float jumpForce;
-        [SerializeField] private float gravityForce;
+        [SerializeField] private float jumpForce; // force applied on Player jump
+        [SerializeField] private float gravityForce; // default force applied down
+        [SerializeField] private float shortJumpForce; // bigger force applied down to ease jump height control
+
         private float verticalVelocity;
-        public bool canJump;
+        public float VerticalVelocity { get => verticalVelocity; }
+        private bool canJump; // if Player can jump currently
 
         [Header("Ground Detection")]
         [SerializeField] private Collider2D collider;
         [SerializeField] private LayerMask groundLayer;
+
         private bool isGrounded;
+        public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
         private float raycastHorizontalOffset;
         private float raycastVerticalOffset;
 
@@ -39,7 +44,12 @@ namespace devlog98.Player {
             else {
                 // fall
                 canJump = false;
-                verticalVelocity -= gravityForce * Time.deltaTime;
+                if (Input.GetButton("Jump")) {
+                    verticalVelocity -= gravityForce * Time.deltaTime;
+                }
+                else {
+                    verticalVelocity -= shortJumpForce * Time.deltaTime;
+                }
             }
 
             // jump
@@ -57,7 +67,7 @@ namespace devlog98.Player {
         private bool GroundCheck() {
             for (int i = -1; i <= 1; i++) {
                 Vector3 rayOrigin = new Vector2(transform.position.x + (raycastHorizontalOffset * i), transform.position.y);
-                Debug.DrawLine(rayOrigin, new Vector3(rayOrigin.x + (raycastHorizontalOffset * i), rayOrigin.y, rayOrigin.z) + Vector3.down * raycastVerticalOffset, Color.green);
+                Debug.DrawLine(rayOrigin, new Vector3(rayOrigin.x, rayOrigin.y - raycastVerticalOffset), Color.green);
                 if (Physics2D.Raycast(rayOrigin, Vector3.down, raycastVerticalOffset, groundLayer)) {
                     return true;
                 }
