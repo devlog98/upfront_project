@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 1639599126262480967}
   m_Layer: 0
   m_Name: Player Crush
-  m_TagString: Player
+  m_TagString: PlayerCrush
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

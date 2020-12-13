@@ -16,7 +16,7 @@ namespace devlog98.Ammunition {
 
         [Header("Damage")]
         [SerializeField] protected int damage; // bullet damage
-        private readonly List<string> collisionTags = new List<string> { "Player", "CameraConfiner" }; // tags to ignore on collision check
+        private readonly List<string> collisionTags = new List<string> { "Player", "PlayerCrush", "CameraConfiner" }; // tags to ignore on collision check
 
         // shoots bullet based on direction
         public void Shoot(Vector2 startPosition, Vector2 moveDirection) {

@@ -25,7 +25,7 @@ namespace devlog98.Player {
         public void ReceiveHeal(int heal) {
             // heal
             health += heal;
-            if (health < maxHealth) {
+            if (health > maxHealth) {
                 health = maxHealth;
             }
 
