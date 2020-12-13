@@ -28,9 +28,6 @@ namespace devlog98.Enemy {
             else if (collision.tag.Contains(Tag)) {
                 enemyHealth.TakeDamage(1, false);
             }
-            else if (collision.tag.Contains(Tag)) {
-                enemyHealth.TakeDamage(1, false);
-            }
         }
     }
 }
