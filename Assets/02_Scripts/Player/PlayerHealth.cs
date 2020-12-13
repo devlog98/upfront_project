@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using devlog98.UI.Player;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +25,7 @@ namespace devlog98.Player {
             if (!isInvincible) {
                 // damage
                 health -= damage;
+                PlayerHUD.instance.UpdateHealth(health);
 
                 // damage flash
                 StopCoroutine("DamageFlash");
