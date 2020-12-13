@@ -11,6 +11,7 @@ namespace devlog98.Player {
     public class PlayerHealth : MonoBehaviour {
         [Header("Health")]
         [SerializeField] private int health; // health pool
+        [SerializeField] private int maxHealth; // max health pool
         private bool isInvincible; // period that Player cannot receive damage
 
         [Header("Damage Flash")]
@@ -20,7 +21,18 @@ namespace devlog98.Player {
         [SerializeField] private int repeatFlashes; // how many times sprites will flash
         private const float flashValue = 0.07f; // duration of each single flash
 
-        // makes enemy lose health
+        // makes player restore health
+        public void ReceiveHeal(int heal) {
+            // heal
+            health += heal;
+            if (health < maxHealth) {
+                health = maxHealth;
+            }
+
+            PlayerHUD.instance.UpdateHealth(health);
+        }
+
+        // makes player lose health
         public void TakeDamage(int damage) {
             if (!isInvincible) {
                 // damage
@@ -38,7 +50,7 @@ namespace devlog98.Player {
             }
         }
 
-        // makes enemy flash when receiving damage
+        // makes player flash when receiving damage
         private IEnumerator DamageFlash() {
             isInvincible = true;
 
