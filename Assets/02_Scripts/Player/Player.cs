@@ -40,7 +40,6 @@ namespace devlog98.Player {
 
         private void OnTriggerStay2D(Collider2D collision) {
             // crushed by block
-            Debug.Log(playerCrush.IsCrushed);
             if (playerJump.IsGrounded && playerCrush.IsCrushed) {
                 playerHealth.TakeDamage(10);
             }
