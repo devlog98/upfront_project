@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using devlog98.Data;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,13 +20,13 @@ namespace devlog98.Enemy {
         private const float flashValue = 0.07f; // duration of each single flash
 
         // makes enemy lose health
-        public void TakeDamage(int damage, bool dropBlock) {
+        public void TakeDamage(int damage, int score, bool dropBlock) {
             // damage
             health -= damage;
 
             // kill enemy if health reaches 0
             if (health <= 0) {
-                Die(dropBlock);
+                Die(score, dropBlock);
             }
             else {
                 // damage flash
@@ -50,7 +51,10 @@ namespace devlog98.Enemy {
         }
 
         // kills enemy
-        private void Die(bool dropBlock) {
+        private void Die(int score, bool dropBlock) {
+            // score
+            PlayerScore.instance.Score(score);
+
             // drop block
             if (dropBlock) {
                 Instantiate(blockPrefab, transform.position, transform.rotation, null);
