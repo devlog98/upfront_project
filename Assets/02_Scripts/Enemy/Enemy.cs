@@ -1,4 +1,5 @@
 ﻿using devlog98.Ammunition;
+using devlog98.Spawn;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ using UnityEngine;
  */
 
 namespace devlog98.Enemy {
-    public class Enemy : MonoBehaviour {
+    public class Enemy : Spawnable {
         public static string Tag = "Enemy";
 
         [SerializeField] private EnemyHealth enemyHealth;
@@ -23,9 +24,6 @@ namespace devlog98.Enemy {
                 enemyHealth.TakeDamage(1, true);
             }
             else if (collision.tag.Contains(Player.Player.Tag)) {
-                enemyHealth.TakeDamage(1, false);
-            }
-            else if (collision.tag.Contains(Tag)) {
                 enemyHealth.TakeDamage(1, false);
             }
             else if (collision.tag.Contains(Tag)) {
