@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +15,14 @@ namespace devlog98.UI.Player {
         [Header("Health")]
         [SerializeField] private GameObject healthIconContainer; // game object with health icons as children
         private List<Image> healthIcons = new List<Image>();
+
+        [Header("Score")]
+        [SerializeField] private TextMeshProUGUI scoreText;
+
+        [Header("Death")]
+        [SerializeField] private GameObject playerDeath; // death screen object
+        [SerializeField] private TextMeshProUGUI deathScoreText;
+        [SerializeField] private TextMeshProUGUI highScoreText;
 
         // initialize singleton
         private void Awake() {
@@ -36,6 +46,18 @@ namespace devlog98.UI.Player {
                 healthIcon.gameObject.SetActive(healthIndex < healthAmount);
                 healthIndex++;
             }
+        }
+
+        // update score text based on current score
+        public void UpdateScore(int scoreAmount) {
+            scoreText.text = Convert.ToString(scoreAmount);
+        }
+
+        // shows when player dies
+        public void DeathScreen(int scoreAmount, int highScoreAmount) {
+            playerDeath.SetActive(true);
+            deathScoreText.text = "Score: " + scoreAmount;
+            highScoreText.text = "High Score: " + highScoreAmount;
         }
     }
 }
