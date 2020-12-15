@@ -22,5 +22,13 @@ namespace devlog98.Player {
                 currentWeapon.Shoot();
             }
         }
+
+        // change weapon if it exists on weapons list
+        public void SwapWeapon(WeaponType weaponType) {
+            Weapon newWeapon = weapons.Find(x => x.Type == weaponType);
+            if (newWeapon != null) {
+                currentWeapon = newWeapon;
+            }
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace devlog98.Weapons {
     public class Weapon : MonoBehaviour {
         [Header("Weapon Attributes")]
         [SerializeField] private WeaponType type;
+        public WeaponType Type { get => type; }
 
         [SerializeField] private GameObject bulletContainer;
         private List<Bullet> bullets = new List<Bullet>();
