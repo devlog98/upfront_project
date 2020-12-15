@@ -19,6 +19,9 @@ namespace devlog98.Spawn {
         [Range(0, 120)] [SerializeField] private float minimumSpawnTime; // spawn time (in seconds)
         [Range(0, 120)] [SerializeField] private float maximumSpawnTime;
 
+        [Header("Sorting")]
+        [SerializeField] private bool randomizeSpawnables; // if code must randomize the spawnable
+
         private bool isSpawning = true;
 
         // initialize spawn and enemy lists
@@ -38,7 +41,18 @@ namespace devlog98.Spawn {
 
                 // spawn inactive enemy at random spawn point
                 int index = Random.Range(0, spawnPoints.Count);
-                Spawnable spawnable = spawnables.Find(x => !x.gameObject.activeSelf);
+
+                // randomize spawnable list if needed
+                Spawnable spawnable;
+                if (randomizeSpawnables) {
+                    List<Spawnable> activeSpawnables = spawnables.FindAll(x => !x.gameObject.activeSelf);
+                    int spawnableIndex = Random.Range(0, activeSpawnables.Count);
+                    spawnable = activeSpawnables[spawnableIndex];
+                }
+                else {
+                    spawnable = spawnables.Find(x => !x.gameObject.activeSelf);
+                }
+                
                 if (spawnable != null) {
                     spawnable.transform.position = spawnPoints[index].position;
                     spawnable.gameObject.SetActive(true);
