@@ -1,4 +1,5 @@
-﻿using devlog98.UI.Player;
+﻿using devlog98.Data;
+using devlog98.UI.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -71,8 +72,10 @@ namespace devlog98.Player {
             isInvincible = false;
         }
 
-        // kills enemy
+        // saves score and kills player
         private void Die() {
+            PlayerScore.instance.FinishScore();
+            PlayerHUD.instance.DeathScreen(PlayerScore.instance.CurrentScore, PlayerScore.instance.HighScore);
             Destroy(this.gameObject);
         }
     }
