@@ -5,7 +5,7 @@ using UnityEngine;
  * Basic bullet movement and damage
  */
  
-namespace devlog98.Ammunition {
+namespace devlog98.Weapons.Bullets {
     public class Bullet : MonoBehaviour {
         public static string Tag = "PlayerBullet"; // default bullet tag
 
