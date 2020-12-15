@@ -1,5 +1,5 @@
-﻿using devlog98.Ammunition;
-using devlog98.Spawn;
+﻿using devlog98.Spawn;
+using devlog98.Weapons.Bullets;
 using System.Collections.Generic;
 using UnityEngine;
 
