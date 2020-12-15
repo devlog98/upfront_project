@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using devlog98.Data;
+using devlog98.UI.Player;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +12,7 @@ namespace devlog98.Player {
     public class PlayerHealth : MonoBehaviour {
         [Header("Health")]
         [SerializeField] private int health; // health pool
+        [SerializeField] private int maxHealth; // max health pool
         private bool isInvincible; // period that Player cannot receive damage
 
         [Header("Damage Flash")]
@@ -19,11 +22,23 @@ namespace devlog98.Player {
         [SerializeField] private int repeatFlashes; // how many times sprites will flash
         private const float flashValue = 0.07f; // duration of each single flash
 
-        // makes enemy lose health
+        // makes player restore health
+        public void ReceiveHeal(int heal) {
+            // heal
+            health += heal;
+            if (health > maxHealth) {
+                health = maxHealth;
+            }
+
+            PlayerHUD.instance.UpdateHealth(health);
+        }
+
+        // makes player lose health
         public void TakeDamage(int damage) {
             if (!isInvincible) {
                 // damage
                 health -= damage;
+                PlayerHUD.instance.UpdateHealth(health);
 
                 // damage flash
                 StopCoroutine("DamageFlash");
@@ -36,7 +51,7 @@ namespace devlog98.Player {
             }
         }
 
-        // makes enemy flash when receiving damage
+        // makes player flash when receiving damage
         private IEnumerator DamageFlash() {
             isInvincible = true;
 
@@ -57,8 +72,10 @@ namespace devlog98.Player {
             isInvincible = false;
         }
 
-        // kills enemy
+        // saves score and kills player
         private void Die() {
+            PlayerScore.instance.FinishScore();
+            PlayerHUD.instance.DeathScreen(PlayerScore.instance.CurrentScore, PlayerScore.instance.HighScore);
             Destroy(this.gameObject);
         }
     }

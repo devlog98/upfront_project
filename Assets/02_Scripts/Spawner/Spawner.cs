@@ -12,19 +12,19 @@ namespace devlog98.Spawn {
         [SerializeField] private GameObject spawnPointContainer; // object that has all spawn points as children
         private List<Transform> spawnPoints = new List<Transform>(); // list with all spawn points
 
-        [SerializeField] private GameObject enemyContainer; // object that has all enemies as children (avoid instancing)
-        private List<Enemy.Enemy> enemies = new List<Enemy.Enemy>(); // list with all spawnable enemies
+        [SerializeField] private GameObject spawnableContainer; // object that has all spawnables as children (avoid instancing)
+        private List<Spawnable> spawnables = new List<Spawnable>(); // list with all spawnables
 
         [Header("Timer")]
-        [Range(0, 10)] [SerializeField] private float minimumSpawnTime; // enemies spawn time
-        [Range(0, 10)] [SerializeField] private float maximumSpawnTime;
+        [Range(0, 120)] [SerializeField] private float minimumSpawnTime; // spawn time (in seconds)
+        [Range(0, 120)] [SerializeField] private float maximumSpawnTime;
 
         private bool isSpawning = true;
 
         // initialize spawn and enemy lists
         private void Start() {
             spawnPoints.AddRange(spawnPointContainer.GetComponentsInChildren<Transform>());
-            enemies.AddRange(enemyContainer.GetComponentsInChildren<Enemy.Enemy>(true));
+            spawnables.AddRange(spawnableContainer.GetComponentsInChildren<Spawnable>(true));
 
             StartCoroutine(SpawnTimerCoroutine());
         }
@@ -38,10 +38,10 @@ namespace devlog98.Spawn {
 
                 // spawn inactive enemy at random spawn point
                 int index = Random.Range(0, spawnPoints.Count);
-                Enemy.Enemy enemy = enemies.Find(x => !x.gameObject.activeSelf);
-                if (enemy != null) {
-                    enemy.transform.position = spawnPoints[index].position;
-                    enemy.gameObject.SetActive(true);
+                Spawnable spawnable = spawnables.Find(x => !x.gameObject.activeSelf);
+                if (spawnable != null) {
+                    spawnable.transform.position = spawnPoints[index].position;
+                    spawnable.gameObject.SetActive(true);
                 }
             }
         }
