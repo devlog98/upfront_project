@@ -5,7 +5,7 @@ using UnityEngine;
  * Basic bullet movement and damage
  */
  
-namespace devlog98.Ammunition {
+namespace devlog98.Weapons.Bullets {
     public class Bullet : MonoBehaviour {
         public static string Tag = "PlayerBullet"; // default bullet tag
 
@@ -16,7 +16,7 @@ namespace devlog98.Ammunition {
 
         [Header("Damage")]
         [SerializeField] protected int damage; // bullet damage
-        private readonly List<string> collisionTags = new List<string> { "Player", "CameraConfiner" }; // tags to ignore on collision check
+        private readonly List<string> collisionTags = new List<string> { "Player", "PlayerBullet", "PlayerCrush", "CameraConfiner" }; // tags to ignore on collision check
 
         // shoots bullet based on direction
         public void Shoot(Vector2 startPosition, Vector2 moveDirection) {

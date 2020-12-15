@@ -1,4 +1,5 @@
-﻿using devlog98.Ammunition;
+﻿using devlog98.Spawn;
+using devlog98.Weapons.Bullets;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,11 +8,12 @@ using UnityEngine;
  */
 
 namespace devlog98.Enemy {
-    public class Enemy : MonoBehaviour {
+    public class Enemy : Spawnable {
         public static string Tag = "Enemy";
 
         [SerializeField] private EnemyHealth enemyHealth;
         [SerializeField] private EnemyMovement enemyMovement; // movement logic
+        [SerializeField] private int enemyScore; // how much score the enemy gives when killed
         private readonly List<string> collisionTags = new List<string> { "Enemy", "Block" }; // tags to ignore on collision check
 
         private void FixedUpdate() {
@@ -20,16 +22,13 @@ namespace devlog98.Enemy {
 
         private void OnTriggerEnter2D(Collider2D collision) {
             if (collision.tag.Contains(Bullet.Tag)) {
-                enemyHealth.TakeDamage(1, true);
+                enemyHealth.TakeDamage(1, enemyScore, true);
             }
             else if (collision.tag.Contains(Player.Player.Tag)) {
-                enemyHealth.TakeDamage(1, false);
+                enemyHealth.TakeDamage(1, 0, false);
             }
             else if (collision.tag.Contains(Tag)) {
-                enemyHealth.TakeDamage(1, false);
-            }
-            else if (collision.tag.Contains(Tag)) {
-                enemyHealth.TakeDamage(1, false);
+                enemyHealth.TakeDamage(1, 0, false);
             }
         }
     }

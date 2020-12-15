@@ -143,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: {fileID: 8523219756680730697}
   enemyMovement: {fileID: 1310820013707729144}
+  enemyScore: 10
 --- !u!114 &8523219756680730697
 MonoBehaviour:
   m_ObjectHideFlags: 0
