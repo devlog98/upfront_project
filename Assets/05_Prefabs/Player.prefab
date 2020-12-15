@@ -92,8 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons:
-  - {fileID: 313530846748266856}
   - {fileID: 6857424671866224896}
+  - {fileID: 313530846748266856}
 --- !u!1 &4171318105296691482
 GameObject:
   m_ObjectHideFlags: 0
