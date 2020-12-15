@@ -13,9 +13,20 @@ namespace devlog98.Weapons {
     public class Weapon : MonoBehaviour {
         [Header("Weapon Attributes")]
         [SerializeField] private WeaponType type;
-        [SerializeField] private List<Bullet> bullets;
-        [SerializeField] private List<Transform> firePoints;
-        
+
+        [SerializeField] private GameObject bulletContainer;
+        private List<Bullet> bullets = new List<Bullet>();
+
+        [SerializeField] private GameObject firePointContainer;
+        private List<Transform> firePoints = new List<Transform>();
+
+        // initialize bullet and firePoints list
+        private void Start() {
+            bullets.AddRange(bulletContainer.GetComponentsInChildren<Bullet>(true));
+            firePoints.AddRange(firePointContainer.GetComponentsInChildren<Transform>());
+            firePoints.RemoveAt(0);
+        }
+
         // shoot bullets
         public void Shoot() {
             foreach(Transform firePoint in firePoints) {
