@@ -275,11 +275,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   maxHealth: 3
+  defaultInvincibilityTime: 1
+  longInvincibilityTime: 3
   spriteRenderers:
   - {fileID: 6065727452181262805}
   defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   flashMaterial: {fileID: 2100000, guid: a9553091d6c17d84f83252b509fb7d7f, type: 2}
-  repeatFlashes: 4
 --- !u!114 &6676722045125484422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40dcae4e71142864d82b1a556263e8bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  demoManager: {fileID: 0}
 --- !u!1 &4697602005158674427
 GameObject:
   m_ObjectHideFlags: 0
