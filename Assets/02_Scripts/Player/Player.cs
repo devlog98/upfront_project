@@ -17,13 +17,23 @@ namespace devlog98.Player {
         [SerializeField] private PlayerJump playerJump; // jump logic
         [SerializeField] private PlayerShoot playerShoot; // shoot logic
 
+        [Header("General")]
+        [SerializeField] private PlayerPause playerPause; // pause game
+
         private void Update() {
             playerMovement.ExecuteUpdate();
-            // only shoot when jumping
-            if (playerJump.VerticalVelocity == 0) {
-                playerShoot.ExecuteUpdate();
+
+            // cannot jump and shoot if crushed
+            if (!(playerJump.IsGrounded && playerCrush.IsCrushed)) {
+                // only shoot when jumping
+                if (playerJump.VerticalVelocity == 0) {
+                    playerShoot.ExecuteUpdate();
+                }
+                playerJump.ExecuteUpdate();
             }
-            playerJump.ExecuteUpdate();
+
+            // pause
+            playerPause.ExecuteUpdate();
         }
 
         private void FixedUpdate() {
@@ -36,12 +46,18 @@ namespace devlog98.Player {
             if (collision.CompareTag(Enemy.Enemy.Tag)) {
                 playerHealth.TakeDamage(1);
             }
-        }
 
-        private void OnTriggerStay2D(Collider2D collision) {
             // crushed by block
             if (playerJump.IsGrounded && playerCrush.IsCrushed) {
-                playerHealth.TakeDamage(10);
+                playerMovement.ChangeMoveSpeed(PlayerMovementState.Slow);
+                playerHealth.TakeDamage(1);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision) {
+            // escaped from under the block
+            if (!playerCrush.IsCrushed) {
+                playerMovement.ChangeMoveSpeed(PlayerMovementState.Default);
             }
         }
     }

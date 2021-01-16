@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 935800764}
-  moveSpeed: 60
+  defaultMoveSpeed: 60
+  slowMoveSpeed: 10
 --- !u!1 &2721131026262122653
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +179,7 @@ GameObject:
   - component: {fileID: 2573539636679544033}
   - component: {fileID: 1149475932257123963}
   - component: {fileID: 1324298004588924445}
+  - component: {fileID: 6676722045125484422}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -258,6 +260,7 @@ MonoBehaviour:
   playerMovement: {fileID: 6649208519307206459}
   playerJump: {fileID: 1228735387703746701}
   playerShoot: {fileID: 8046363347604069122}
+  playerPause: {fileID: 6676722045125484422}
 --- !u!114 &1324298004588924445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +280,18 @@ MonoBehaviour:
   defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   flashMaterial: {fileID: 2100000, guid: a9553091d6c17d84f83252b509fb7d7f, type: 2}
   repeatFlashes: 4
+--- !u!114 &6676722045125484422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4360685756776434767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40dcae4e71142864d82b1a556263e8bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4697602005158674427
 GameObject:
   m_ObjectHideFlags: 0

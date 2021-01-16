@@ -19,6 +19,9 @@ namespace devlog98.UI.Player {
         [Header("Score")]
         [SerializeField] private TextMeshProUGUI scoreText;
 
+        [Header("Pause")]
+        [SerializeField] private GameObject playerPause; // pause menu object
+
         [Header("Death")]
         [SerializeField] private GameObject playerDeath; // death screen object
         [SerializeField] private TextMeshProUGUI deathScoreText;
@@ -51,6 +54,16 @@ namespace devlog98.UI.Player {
         // update score text based on current score
         public void UpdateScore(int scoreAmount) {
             scoreText.text = Convert.ToString(scoreAmount);
+        }
+
+        // shows and hides pause menu
+        public void UpdatePause(bool isPaused) {
+            if (!isPaused) {
+                playerPause.SetActive(false);
+            }
+            else {
+                playerPause.SetActive(true);
+            }
         }
 
         // shows when player dies
