@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 /*
  * Player controller
@@ -19,11 +20,15 @@ namespace devlog98.Player {
 
         private void Update() {
             playerMovement.ExecuteUpdate();
-            // only shoot when jumping
-            if (playerJump.VerticalVelocity == 0) {
-                playerShoot.ExecuteUpdate();
+
+            // cannot jump and shoot if crushed
+            if (!(playerJump.IsGrounded && playerCrush.IsCrushed)) {
+                // only shoot when jumping
+                if (playerJump.VerticalVelocity == 0) {
+                    playerShoot.ExecuteUpdate();
+                }
+                playerJump.ExecuteUpdate();
             }
-            playerJump.ExecuteUpdate();
         }
 
         private void FixedUpdate() {
@@ -36,12 +41,18 @@ namespace devlog98.Player {
             if (collision.CompareTag(Enemy.Enemy.Tag)) {
                 playerHealth.TakeDamage(1);
             }
-        }
 
-        private void OnTriggerStay2D(Collider2D collision) {
             // crushed by block
             if (playerJump.IsGrounded && playerCrush.IsCrushed) {
-                playerHealth.TakeDamage(10);
+                playerMovement.ChangeMoveSpeed(PlayerMovementState.Slow);
+                playerHealth.TakeDamage(1);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision) {
+            // escaped from under the block
+            if (!playerCrush.IsCrushed) {
+                playerMovement.ChangeMoveSpeed(PlayerMovementState.Default);
             }
         }
     }

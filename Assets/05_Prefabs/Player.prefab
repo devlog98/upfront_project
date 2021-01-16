@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 935800764}
-  moveSpeed: 60
+  defaultMoveSpeed: 60
+  slowMoveSpeed: 10
 --- !u!1 &2721131026262122653
 GameObject:
   m_ObjectHideFlags: 0
