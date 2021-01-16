@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using devlog98.Weapons;
+using UnityEngine;
 
 /*
  * Player controller
@@ -44,12 +45,14 @@ namespace devlog98.Player {
         private void OnTriggerEnter2D(Collider2D collision) {
             // hit by enemy
             if (collision.CompareTag(Enemy.Enemy.Tag)) {
+                playerShoot.SwapWeapon(WeaponType.SingleShot); // reset powerup if hit
                 playerHealth.TakeDamage(1);
             }
 
             // crushed by block
             if (playerJump.IsGrounded && playerCrush.IsCrushed) {
                 playerMovement.ChangeMoveSpeed(PlayerMovementState.Slow);
+                playerShoot.SwapWeapon(WeaponType.SingleShot); // reset powerup if hit
                 playerHealth.TakeDamage(1);
             }
         }
