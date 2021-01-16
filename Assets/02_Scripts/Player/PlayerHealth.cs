@@ -9,18 +9,23 @@ using UnityEngine;
  */
 
 namespace devlog98.Player {
+    public enum PlayerDamageType { Enemy, Block } // types of damage Player can receive
+
     public class PlayerHealth : MonoBehaviour {
         [Header("Health")]
         [SerializeField] private int health; // health pool
         [SerializeField] private int maxHealth; // max health pool
+        [SerializeField] private float defaultInvincibilityTime; // default amount
+        [SerializeField] private float longInvincibilityTime; // amount for crushing or longer damages
+        private float invincibilityTime; // seconds of invincibility
         private bool isInvincible; // period that Player cannot receive damage
 
         [Header("Damage Flash")]
         [SerializeField] private List<SpriteRenderer> spriteRenderers; // all sprites that must flash when damage is received
         [SerializeField] private Material defaultMaterial; // the sprite's basic material
         [SerializeField] private Material flashMaterial; // the material of the flash
-        [SerializeField] private int repeatFlashes; // how many times sprites will flash
         private const float flashValue = 0.07f; // duration of each single flash
+        private float timer; // generic timer
 
         // makes player restore health
         public void ReceiveHeal(int heal) {
@@ -34,11 +39,21 @@ namespace devlog98.Player {
         }
 
         // makes player lose health
-        public void TakeDamage(int damage) {
+        public void TakeDamage(int damage, PlayerDamageType damageType) {
             if (!isInvincible) {
                 // damage
                 health -= damage;
                 PlayerHUD.instance.UpdateHealth(health);
+
+                // set correct invincibility
+                switch (damageType) {
+                    case PlayerDamageType.Block:
+                        invincibilityTime = longInvincibilityTime;
+                        break;
+                    default:
+                        invincibilityTime = defaultInvincibilityTime;
+                        break;
+                }
 
                 // damage flash
                 StopCoroutine("DamageFlash");
@@ -54,8 +69,9 @@ namespace devlog98.Player {
         // makes player flash when receiving damage
         private IEnumerator DamageFlash() {
             isInvincible = true;
+            timer = Time.time + invincibilityTime;
 
-            for (int i = 0; i <= repeatFlashes; i++) {
+            while (Time.time < timer) {
                 // flash on
                 foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
                     spriteRenderer.material = flashMaterial;

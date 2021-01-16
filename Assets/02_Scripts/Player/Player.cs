@@ -46,14 +46,16 @@ namespace devlog98.Player {
             // hit by enemy
             if (collision.CompareTag(Enemy.Enemy.Tag)) {
                 playerShoot.SwapWeapon(WeaponType.SingleShot); // reset powerup if hit
-                playerHealth.TakeDamage(1);
+                playerHealth.TakeDamage(1, PlayerDamageType.Enemy);
             }
+        }
 
+        private void OnTriggerStay2D(Collider2D collision) {
             // crushed by block
             if (playerJump.IsGrounded && playerCrush.IsCrushed) {
                 playerMovement.ChangeMoveSpeed(PlayerMovementState.Slow);
                 playerShoot.SwapWeapon(WeaponType.SingleShot); // reset powerup if hit
-                playerHealth.TakeDamage(1);
+                playerHealth.TakeDamage(1, PlayerDamageType.Block);
             }
         }
 
