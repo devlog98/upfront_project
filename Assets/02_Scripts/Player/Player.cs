@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /*
  * Player controller
@@ -18,6 +17,9 @@ namespace devlog98.Player {
         [SerializeField] private PlayerJump playerJump; // jump logic
         [SerializeField] private PlayerShoot playerShoot; // shoot logic
 
+        [Header("General")]
+        [SerializeField] private PlayerPause playerPause; // pause game
+
         private void Update() {
             playerMovement.ExecuteUpdate();
 
@@ -29,6 +31,9 @@ namespace devlog98.Player {
                 }
                 playerJump.ExecuteUpdate();
             }
+
+            // pause
+            playerPause.ExecuteUpdate();
         }
 
         private void FixedUpdate() {
