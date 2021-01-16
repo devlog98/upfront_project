@@ -1,4 +1,5 @@
 ﻿using devlog98.Data;
+using devlog98.UI.Enemy;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace devlog98.Enemy {
         [Header("Health")]
         [SerializeField] private int health; // health pool
         [SerializeField] private GameObject blockPrefab; // block that will be dropped after enemy death
+        [SerializeField] private EnemyHUD enemyHUD; // canvas that shows enemy score after death
 
         [Header("Damage Flash")]
         [SerializeField] private List<SpriteRenderer> spriteRenderers; // all sprites that must flash when damage is received
@@ -53,7 +55,10 @@ namespace devlog98.Enemy {
         // kills enemy
         private void Die(int score, bool dropBlock) {
             // score
-            PlayerScore.instance.Score(score);
+            if (score > 0) {
+                PlayerScore.instance.Score(score);
+                enemyHUD.UpdateScore(transform.position, score);
+            }
 
             // drop block
             if (dropBlock) {
