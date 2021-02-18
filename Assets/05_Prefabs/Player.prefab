@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 935800764}
-  defaultMoveSpeed: 60
+  defaultMoveSpeed: 70
   slowMoveSpeed: 10
 --- !u!1 &2721131026262122653
 GameObject:
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 935800764}
   jumpForce: 200
-  gravityForce: 500
+  gravityForce: 600
   shortJumpForce: 1000
   collider: {fileID: 2573539636679544033}
   groundLayer:
